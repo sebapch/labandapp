@@ -6,6 +6,6 @@ body{
   background-color: #131313;
 }
 
-label{
+h1,label, li{
   color: whitesmoke;
 }
