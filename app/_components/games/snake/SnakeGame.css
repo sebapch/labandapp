@@ -1,0 +1,28 @@
+/* SnakeGame.css */
+
+/* Estilos para el contenedor principal */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  /* Estilos para el título del juego */
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  /* Estilos para el puntaje */
+  p {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  /* Estilos para el lienzo del juego */
+  canvas {
+    border: 2px solid #ccc;
+    margin-top: 10px;
+  }
+  
