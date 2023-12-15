@@ -39,6 +39,42 @@ const SnakeGame = () => {
     }
   };
 
+  const handleTouchStart = (e) => {
+    const touch = e.touches[0];
+    const startX = touch.clientX;
+    const startY = touch.clientY;
+
+    document.addEventListener("touchmove", handleTouchMove);
+
+    function handleTouchMove(e) {
+      e.preventDefault();
+
+      const touch = e.touches[0];
+      const deltaX = touch.clientX - startX;
+      const deltaY = touch.clientY - startY;
+
+      if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        // Horizontal swipe
+        if (deltaX > 0) {
+          setDirection("RIGHT");
+        } else {
+          setDirection("LEFT");
+        }
+      } else {
+        // Vertical swipe
+        if (deltaY > 0) {
+          setDirection("DOWN");
+        } else {
+          setDirection("UP");
+        }
+      }
+    }
+
+    document.addEventListener("touchend", () => {
+      document.removeEventListener("touchmove", handleTouchMove);
+    });
+  };
+
   const moveSnake = () => {
     const newSnake = [...snake];
     const head = { ...newSnake[0] };
@@ -86,9 +122,14 @@ const SnakeGame = () => {
     // Set up key event listener
     window.addEventListener("keydown", handleKeyPress);
 
-    // Clean up key event listener on component unmount
+    // Set up touch event listener
+    const canvas = canvasRef.current;
+    canvas.addEventListener("touchstart", handleTouchStart);
+
+    // Clean up key and touch event listeners on component unmount
     return () => {
       window.removeEventListener("keydown", handleKeyPress);
+      canvas.removeEventListener("touchstart", handleTouchStart);
     };
   }, []);
 
