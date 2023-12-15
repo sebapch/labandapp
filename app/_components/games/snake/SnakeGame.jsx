@@ -163,16 +163,16 @@ const SnakeGame = () => {
   }, [snake, direction, food, score]);
 
   return (
-    <div>
-      <h1>Snake Game</h1>
-      <p>Score: {score}</p>
-      <canvas
-        ref={canvasRef}
-        width={canvasSize * cellSize}
-        height={canvasSize * cellSize}
-        className="border border-gray-500"
-      />
-    </div>
+    <div className="flex items-center flex-col mt-4">
+    <h1>Snake Game</h1>
+    <label>Score: {score}</label>
+    <canvas
+      ref={canvasRef}
+      width={canvasSize * cellSize}
+      height={canvasSize * cellSize}
+      className="border border-gray-500"
+    />
+  </div>
   );
 };
 
